@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/common.css" />
+</head>
+<body>
+<h1>欢迎来到首页</h1>
+
+</body>
+<script>
+    KindEditor.create("",{
+        uploadJson:"/upload.html"
+        extraFileUploadParams:{
+            "csrfmiddlewaretoken":"{{ csrf_token }}"
+        }
+    })
+</script>
+
+<script>
+    String.prototype.Format = function (arg) {
+        var temp = this.replace(/\{(\w+)\}/g,function (k,kk) {
+            return arg[kk]
+        })
+        return temp
+    }
+</script>
+</html>

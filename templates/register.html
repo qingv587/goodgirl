@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+    $(function () {
+        bindAvatar();
+    });
+    function bindAvatar() {
+        if (window.URL.createObjectURL) {
+            bindAvatar1()
+        }else if (window.FileReader){
+            bindAvatar2()
+        }else{
+            bindAvatar3()
+        }
+
+    }
+    function bindAvatar1() {
+        $("input").change(function () {
+            var obj = $(this)[0].files[0];
+            var v = window.URL.createObjectURL(obj);
+            $("img").prop("src",v);
+            $("img").load = function () {
+                window.URL.removeObjectURL(v);
+            }
+        })
+    }
+    function bindAvatar2() {
+        $("input").change(function () {
+            var obj = $(this)[0].files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(obj);
+            reader.onload = function () {
+                $("img").prop("src",v);
+            }
+        })
+    }
+    function bindAvatar3() {
+        console.log("后台处理")
+    }
+
+{#    $().change(function () {#}
+{#        var obj = $(this)[0].files[0];#}
+{#        //ajax发送后台，并获取路径#}
+{#        // img.src = 获取路径#}
+{#        //方法一，#}
+{#        var v = window.URL.createObjectURL(obj);#}
+{#        $().attr("src",v);#}
+{#        //方法二#}
+{#        var reader = new FileReader();#}
+{#        reader.readAsDataURL(obj);#}
+{#        reader.onload = function () {#}
+{#            $("img").attr("src",this.result);#}
+{#        }#}
+{#    });#}
+
+
+</script>
+</body>
+</html>
